@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slip Gaji</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+        }
+
+        .payslip-card {
+            width: 320px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .payslip-header {
+            background: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .payslip-title {
+            background: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: -15px;
+        }
+
+        .payslip-body {
+            padding: 20px;
+        }
+
+        .payslip-section:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        .payslip-section h3 {
+            margin: 0 0 10px;
+            font-size: 1em;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            color: #333;
+        }
+
+        .payslip-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .payslip-table th, .payslip-table td {
+            padding: 8px 5px;
+        }
+
+        .payslip-table td {
+            text-align: right;
+        }
+
+        .payslip-table th {
+            background: #f4f4f4;
+            color: #333;
+            width: 120px;
+            text-align: left;
+        }
+
+        .payslip-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .net-salary {
+            font-weight: bold;
+        }
+
+        .payslip-footer {
+            text-align: center;
+            padding: 10px;
+            background: #f4f4f4;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+<div class="payslip-card">
+    <div class="payslip-header">PT Baroqah Tbk</div>
+    <div class="payslip-title">Slip Gaji</div>
+    <div class="payslip-body">
+        <div class="payslip-section">
+            <table class="payslip-table">
+                <tr>
+                    <th>Bulan</th>
+                    <td>{{ salary.salary_month_name }}</td>
+                </tr>
+                <tr>
+                    <th>Tahun</th>
+                    <td>{{ salary.salary_year }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="payslip-section">
+            <h3>Informasi Karyawan</h3>
+            <table class="payslip-table">
+                <tr>
+                    <th>NIP</th>
+                    <td>{{ salary.employee_id }}</td>
+                </tr>
+                <tr>
+                    <th>Nama</th>
+                    <td>{{ salary.employee.name }}</td>
+                </tr>
+                <tr>
+                    <th>Jabatan</th>
+                    <td>{{ salary.employee.position.name }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="payslip-section">
+            <h3>Detail Gaji</h3>
+            <table class="payslip-table">
+                <tr>
+                    <th>Gaji Pokok</th>
+                    <td>{{ salary.formatted_base_salary }}</td>
+                </tr>
+                <tr>
+                    <th>Bonus (%)</th>
+                    <td>{{ salary.formatted_bonus_percentage }}</td>
+                </tr>
+                <tr>
+                    <th>Jumlah Bonus</th>
+                    <td>{{ salary.formatted_bonus_amount }}</td>
+                </tr>
+                <tr>
+                    <th>PPh (%)</th>
+                    <td>{{ salary.formatted_tax_percentage }}</td>
+                </tr>
+                <tr>
+                    <th>Jumlah PPh</th>
+                    <td>{{ salary.formatted_tax_amount }}</td>
+                </tr>
+                <tr class="net-salary">
+                    <th>Gaji Bersih</th>
+                    <td>{{ salary.formatted_net_salary }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="payslip-footer">e-PaySlip</div>
+</div>
+</body>
+</html>
